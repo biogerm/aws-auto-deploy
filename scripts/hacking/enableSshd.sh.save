@@ -1,0 +1,4 @@
+#!/bin/bash
+ssh root@localhost -p 7822 'echo "#!/bin/bash" > /var/root/.ssh/ssh.sh;echo "launchctl load -w /System/Library/LaunchDaemons/ssh.plist" >> /var/root/.ssh/test.sh;echo "sleep 20" >> /var/root/.ssh/test.sh;echo "" >> /var/root/.ssh/test.sh'
+ssh root@localhost -p 7822 'chmod 755 /var/root/.ssh/test.sh'
+

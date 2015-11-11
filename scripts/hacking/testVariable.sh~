@@ -1,0 +1,7 @@
+#!/bin/bash
+isConnected=`ssh root@localhost -o ConnectTimeOut=10 -p 7822 date 2>&1 | grep 2014 | wc -l`
+echo $isConnected
+sleep 1
+echo $isConnected
+sleep 1
+echo $isConnected
