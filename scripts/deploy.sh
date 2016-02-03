@@ -23,7 +23,8 @@ sudo -i $CMD
 sudo sed -i "\$i$CMD\n" /etc/rc.local
 
 echo "biogerm pptpd $KEY *" | sudo tee -a /etc/ppp/chap-secrets
-
+echo "ms-dns 8.8.8.8" | sudo tee -a /etc/ppp/pptpd-options
+echo "ms-dns 8.8.4.4" | sudo tee -a /etc/ppp/pptpd-options
 sudo /etc/init.d/pptpd restart
 echo "PPTP ready"
 
