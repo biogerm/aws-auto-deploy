@@ -15,6 +15,7 @@ fi
 
 # Install Emacs and PPTPD
 sudo apt-get -q -y install emacs23 pptpd
+cp ../configs/.emacs /home/ubuntu/
 
 # Enable IPv4 port forwarding
 sudo sed -i -r 's/^\s*#(net\.ipv4\.ip_forward=1.*)/\1/' /etc/sysctl.conf
