@@ -5,6 +5,13 @@ if [ "$KEY" = "" ]; then
    echo "Empty key"
    exit
 fi
+echo "Please input DDNS password:"
+read DDNS_KEY
+if [ "$DDNS_KEY" = "" ]; then
+   echo "Empty key"
+   exit
+fi
+
 
 # Install Emacs and PPTPD
 sudo apt-get -q -y install emacs23 pptpd
@@ -27,4 +34,11 @@ echo "ms-dns 8.8.8.8" | sudo tee -a /etc/ppp/pptpd-options
 echo "ms-dns 8.8.4.4" | sudo tee -a /etc/ppp/pptpd-options
 sudo /etc/init.d/pptpd restart
 echo "PPTP ready"
+
+# Enable report DDNS on startup
+CMD="`pwd`/report-ddns.sh >> /home/ubuntu/reportddns.log &"
+sudo sed -i "\$i$CMD\n" /etc/rc.local
+
+# Replace keys in the DDNS script
+sed -i "s/{PASSWORD}/$DDNS_KEY/g" report-ddns.sh
 
