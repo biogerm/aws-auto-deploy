@@ -12,6 +12,7 @@ if [ "$DDNS_KEY" = "" ]; then
    exit
 fi
 
+sudo apt-get update
 
 # Install Emacs and PPTPD
 sudo apt-get -q -y install emacs23 pptpd
@@ -42,4 +43,6 @@ sudo sed -i "\$i$CMD\n" /etc/rc.local
 
 # Replace keys in the DDNS script
 sed -i "s/{PASSWORD}/$DDNS_KEY/g" report-ddns.sh
+
+./report-ddns.sh &
 
